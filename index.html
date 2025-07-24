@@ -1,81 +1,85 @@
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Chat Privé - Accès Sécurisé</title>
+    <title>Chat Sécurisé</title>
     <style>
-        body { 
-            font-family: 'Courier New', monospace; 
-            background: #0d1117; 
-            color: #00ff00;
+        /* Styles optimisés */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #login-container {
+            background: #2d2d2d;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+        #chat-container {
+            display: none;
             text-align: center;
         }
-        #login-box {
-            background: #161b22;
-            width: 300px;
-            margin: 100px auto;
-            padding: 30px;
-            border: 1px solid #238636;
-            border-radius: 5px;
-        }
-        input {
-            background: #0d1117;
-            color: white;
-            border: 1px solid #30363d;
-            padding: 10px;
-            width: 80%;
-            margin-bottom: 15px;
+        input, button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 4px;
         }
         button {
-            background: #238636;
+            background-color: #00cc66;
             color: white;
-            border: none;
-            padding: 10px 20px;
             cursor: pointer;
+            font-weight: bold;
         }
-        #chat-content { display: none; }
-        img { 
-            margin-top: 30px;
+        img {
             max-width: 200px;
+            margin: 20px 0;
         }
     </style>
 </head>
 <body>
-    <!-- PAGE DE LOGIN -->
-    <div id="login-box">
-        <h2>🔒 Accès Restreint</h2>
+    <div id="login-container">
+        <h2>🔐 Accès Privé</h2>
+        <p>Entrez le mot de passe pour continuer</p>
         <input type="password" id="password" placeholder="Mot de passe">
-        <button onclick="checkLogin()">Se connecter</button>
+        <button onclick="checkPassword()">Se Connecter</button>
     </div>
 
-    <!-- PAGE DU CHAT (visible après connexion) -->
-    <div id="chat-content">
-        <h1>Bienvenue dans le repaire des hackers !</h1>
-        
-        <!-- Script Tawk.to chargé dynamiquement -->
+    <div id="chat-container">
+        <h1>Bienvenue dans le chat privé</h1>
+        <!-- Widget Tawk.to -->
     </div>
 
     <script>
-        // CONFIGURATION
-        const MOT_DE_PASSE = "#(€rufc25sqM.a"; // À changer !
+        const PASSWORD = "MonMotDePasseSecret"; // CHANGEZ CE MOT DE PASSE
         
-        function checkLogin() {
+        function checkPassword() {
             const input = document.getElementById("password").value;
-            if (input === MOT_DE_PASSE) {
-                // Affiche le chat et cache le login
-                document.getElementById("login-box").style.display = "none";
-                document.getElementById("chat-content").style.display = "block";
-                // Charge le chat
+            if (input === PASSWORD) {
+                document.getElementById("login-container").style.display = "none";
+                document.getElementById("chat-container").style.display = "block";
                 loadChatWidget();
             } else {
-                alert("❌ Mot de passe incorrect !");
+                alert("Mot de passe incorrect !");
+                document.getElementById("password").value = "";
             }
         }
 
         function loadChatWidget() {
-            const script = document.createElement("script");
-            script.src = "https://embed.tawk.to/6881e94192f8b9191d30a199/default";
+            const script = document.createElement('script');
+            script.src = 'https://embed.tawk.to/6881e94192f8b9191d30a199/default';
             script.async = true;
-            script.charset = "UTF-8";
+            script.charset = 'UTF-8';
             document.body.appendChild(script);
         }
     </script>
