@@ -1,28 +1,85 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html>
 <head>
-    <title>Chat des Hackers</title>
-    <style  body {
-    background: #0d1117; /* Fond sombre GitHub */
-    color: #58a6ff; /* Bleu GitHub */
-}
-        body { font-family: Arial; text-align: center; padding: 20px; }
+    <title>Chat Privé - Accès Sécurisé</title>
+    <style>
+        body { 
+            font-family: 'Courier New', monospace; 
+            background: #0d1117; 
+            color: #00ff00;
+            text-align: center;
+        }
+        #login-box {
+            background: #161b22;
+            width: 300px;
+            margin: 100px auto;
+            padding: 30px;
+            border: 1px solid #238636;
+            border-radius: 5px;
+        }
+        input {
+            background: #0d1117;
+            color: white;
+            border: 1px solid #30363d;
+            padding: 10px;
+            width: 80%;
+            margin-bottom: 15px;
+        }
+        button {
+            background: #238636;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        #chat-content { display: none; }
+        img { 
+            margin-top: 30px;
+            max-width: 200px;
+        }
     </style>
 </head>
 <body>
-    <h1>Bienvenue sur le chat des hacker!</h1>
-    
-    <!-- Script Tawk.to -->
-    <script type="text/javascript">
-        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-        (function(){
-            var s1=document.createElement("script"), s0=document.getElementsByTagName("script")[0];
-            s1.async = true;
-            s1.src = 'https://embed.tawk.to/6881e94192f8b9191d30a199/default';
-            s1.charset = 'UTF-8';
-            s1.setAttribute('crossorigin', '*');
-            s0.parentNode.insertBefore(s1, s0);
-        })();
+    <!-- PAGE DE LOGIN -->
+    <div id="login-box">
+        <h2>🔒 Accès Restreint</h2>
+        <input type="password" id="password" placeholder="Mot de passe">
+        <button onclick="checkLogin()">Se connecter</button>
+    </div>
+
+    <!-- PAGE DU CHAT (visible après connexion) -->
+    <div id="chat-content">
+        <h1>Bienvenue dans le repaire des hackers !</h1>
+        <!-- REMPLACE "hackers-logo.png" PAR LE NOM DE TON IMAGE -->
+        <img src="hackers-logo.png" alt="Logo du groupe">
+        
+        <!-- Script Tawk.to chargé dynamiquement -->
+    </div>
+
+    <script>
+        // CONFIGURATION
+        const MOT_DE_PASSE = "Hacker2025"; // À changer !
+        
+        function checkLogin() {
+            const input = document.getElementById("password").value;
+            if (input === MOT_DE_PASSE) {
+                // Affiche le chat et cache le login
+                document.getElementById("login-box").style.display = "none";
+                document.getElementById("chat-content").style.display = "block";
+                // Charge le chat
+                loadChatWidget();
+            } else {
+                alert("❌ Mot de passe incorrect !");
+            }
+        }
+
+        function loadChatWidget() {
+            const script = document.createElement("script");
+            script.src = "https://embed.tawk.to/6881e94192f8b9191d30a199/default";
+            script.async = true;
+            script.charset = "UTF-8";
+            document.body.appendChild(script);
+        }
     </script>
 </body>
 </html>
